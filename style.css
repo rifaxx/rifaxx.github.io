@@ -1,0 +1,1147 @@
+/* Estilos Generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+.main-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px; /* Reducido para subir el logo */
+    z-index: 10; /* Asegura que esté sobre todo */
+    display: flex;
+    justify-content: flex-start; /* Logo a la izquierda */
+    align-items: center;
+    box-sizing: border-box; /* Incluye padding en el width */
+}
+
+.logo-link {
+    display: block; /* Para que el enlace ocupe el espacio */
+    width: 193px; /* Aumento significativo del tamaño */
+    height: 97px; /* Aumento significativo del tamaño */
+    display: flex; /* Para centrar la imagen si es más pequeña */
+    justify-content: center;
+    align-items: center;
+}
+.site-logo {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto; /* Mantiene la proporción */
+    display: block; /* Elimina espacio extra debajo de la imagen */
+    opacity: 0; /* Inicialmente oculto */
+    animation: fadeInSlideUp 1s ease-out 0.5s forwards; /* Animación con retardo */
+}
+
+
+/* Sección Hero */
+.hero {
+    background-color: #FFFFFF;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Apila el contenido y el slider */
+    justify-content: center; /* Centra los elementos apilados */
+    align-items: center;
+    text-align: center;
+    color: #333;
+    padding: 0 20px;
+    padding-top: 80px; /* Add padding to push content down from header */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Columnas de fondo animadas */
+.hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    width: 15%; /* Un poco más ancho para mejor efecto visual */
+    height: 70%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.07), transparent); /* Patrón oscuro para fondo blanco */
+    z-index: 1;
+    transform: skewX(-20deg);
+    animation: moveColumns 10s infinite ease-in-out alternate;
+}
+
+.hero::before {
+    left: -5%;
+    bottom: -15%;
+}
+
+.hero::after {
+    right: -5%;
+    top: -15%;
+    animation-delay: -5s; /* Desfase de animación */
+}
+
+@keyframes moveColumns {
+    from {
+        transform: translateY(0) skewX(-20deg);
+    }
+    to {
+        transform: translateY(40px) skewX(-20deg);
+    }
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px; /* Espacio entre el contenido y el slider */
+    /* margin-top: 0; */ /* Remove this, will use padding on .hero instead */
+}
+
+.hero-content .main-title {
+    font-size: 3.5rem; /* Aumento significativo del tamaño */
+    margin-bottom: 30px; /* Espacio debajo del título */
+    font-weight: 700; /* Negrita para el título */
+    max-width: 600px;
+    line-height: 1.2;
+    opacity: 0; /* Inicialmente oculto */
+    animation: fadeInSlideUp 1s ease-out 1s forwards; /* Animación con retardo */
+}
+
+/* Botón CTA */
+.cta-button {
+    background-color: #FF2948; /* Color vibrante para llamar la atención */
+    color: white;
+    padding: 18px 35px;
+    border: none;
+    border-radius: 15px 40px 15px 40px; /* Forma de boleta virtual */
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
+    text-decoration: none; /* Eliminar subrayado de enlace */
+    display: inline-block; /* Para que padding y width funcionen correctamente */
+    opacity: 0; /* Inicialmente oculto */
+    animation: fadeInSlideUp 1s ease-out 1.5s forwards; /* Animación con retardo */
+}
+
+.cta-button:hover {
+    background-color: #E0203F; /* Un poco más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Efecto de "levantar" */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Sombra más grande al hover */
+}
+
+/* Slider de Imágenes */
+.image-slider {
+    position: relative; /* No longer absolute */
+    width: 90%;
+    max-width: 800px;
+    margin: 0; /* Centrar el slider dentro de la sección */
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.7s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+.card-overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 15px; /* Slightly increased padding for better visibility */
+    border-radius: 8px;
+    width: auto;
+    max-width: 200px; /* Slightly increased max-width for desktop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.card-overlay.active {
+    opacity: 1;
+}
+
+/* New positioning for entry points - always top corners */
+.card-overlay.left-entry {
+    left: -100%; /* Initial position */
+    top: 5%; /* Top corner */
+}
+
+.card-overlay.right-entry {
+    right: -100%; /* Initial position */
+    top: 5%; /* Top corner */
+}
+
+@keyframes slideInLeft {
+    from { left: -100%; }
+    to { left: 5%; } /* Final position in top-left */
+}
+
+@keyframes slideInRight {
+    from { right: -100%; }
+    to { right: 5%; } /* Final position in top-right */
+}
+
+.card-phrase {
+    font-size: 1rem; /* Increased font size for better readability */
+    text-align: center;
+    margin: 0;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 3;
+}
+
+.slider-controls button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.slider-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Sección de Confianza */
+.trust-section {
+    background-color: #FFFFFF;
+    height: 100vh; /* Full screen height */
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center;
+    color: #333;
+    padding: 0 20px; /* Remove vertical padding, let flexbox handle it */
+}
+
+.trust-content {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+}
+
+.trust-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.trust-section p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: #555; /* Gris más suave para la descripción */
+}
+
+/* Slider de Certificaciones */
+.cert-slider {
+    width: 100%;
+    overflow: hidden;
+    background-color: #FFFFFF; /* Fondo blanco */
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.cert-track {
+    display: flex;
+    width: fit-content;
+    animation: scrollCert 20s linear infinite;
+}
+
+.cert-slide {
+    flex-shrink: 0;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.cert-slide img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.cert-slide img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+@keyframes scrollCert {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Diseño Responsivo */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 10px 15px; /* Ajuste para móvil */
+    }
+    .logo-link {
+        width: 105px; /* Ajuste para móvil */
+        height: 58px; /* Ajuste para móvil */
+    }
+    .hero-content .main-title {
+        font-size: 1.8rem; /* Ajuste para móvil */
+    }
+
+    .cta-button {
+        font-size: 1.1rem;
+        padding: 15px 25px;
+    }
+
+    .hero::before, .hero::after {
+        width: 20%;
+    }
+    .image-slider {
+        width: 95%;
+    }
+    .card-overlay {
+        width: auto;
+        max-width: 150px; /* Keep it smaller on mobile */
+        padding: 6px 10px; /* Tighter padding on mobile */
+    }
+    .card-phrase {
+        font-size: 0.9rem; /* Increased font size for mobile */
+    }
+    .slider-controls button {
+        padding: 8px 12px;
+        font-size: 1.2rem;
+    }
+    .trust-section {
+        padding: 50px 15px;
+    }
+    .trust-section h2 {
+        font-size: 1.8rem;
+    }
+    .trust-section p {
+        font-size: 0.95rem;
+    }
+    .cert-slide {
+        width: 150px; /* Smaller on mobile */
+        height: 80px;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content .main-title {
+        font-size: 2.4rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .hero::before, .hero::after {
+        display: none; /* Ocultar columnas en pantallas muy pequeñas */
+    }
+    .card-overlay {
+        max-width: 120px; /* Even smaller on very small screens */
+        padding: 5px 8px;
+    }
+    .card-phrase {
+        font-size: 0.8rem; /* Smaller font on very small screens */
+    }
+}
+
+/* Sección de Preguntas Frecuentes (FAQ) */
+#faq-section {
+    background-color: #121212;
+    height: 100vh; /* Full screen height */
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    color: #FFFFFF;
+    padding: 0 20px; /* Remove vertical padding */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Detalle translúcido de fondo */
+#faq-section::before {
+    content: '?';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    font-size: 300px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.03);
+    transform: rotate(-20deg);
+    z-index: 1;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+#faq-section h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+.faq-question p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.faq-arrow {
+    transition: transform 0.3s ease-in-out;
+    flex-shrink: 0; /* Evita que el ícono se encoja */
+    margin-left: 20px;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease;
+    padding: 0 10px;
+}
+
+.faq-answer p {
+    margin: 0;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    color: #E0E0E0; /* Un blanco no tan brillante para la respuesta */
+}
+
+/* Estado activo */
+.faq-item.active .faq-answer {
+    max-height: 200px; /* Altura suficiente para la respuesta */
+    padding-top: 10px;
+}
+
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
+}
+
+/* Sección Equipo Rifaxx - Rediseño */
+#team-section {
+    position: relative;
+    /* Removed min-height: 100vh; to allow natural height */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    padding: 100px 20px; /* Increased vertical padding for more space */
+}
+
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.team-content {
+    position: relative;
+    z-index: 2; /* Delante de las partículas */
+    background-color: #FFFFFF; /* Tarjeta blanca sólida */
+    padding: 30px 40px; /* Reducido para más espacio alrededor */
+    border-radius: 20px;
+    max-width: 700px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); /* Sombra más suave y profesional */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 50px; /* Push content down from center */
+}
+
+/* Animación para el título */
+@keyframes revealText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal-title {
+    font-size: 1.76rem; /* Reducido un 20% de 2.2rem */
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+    animation: revealText 1s ease-out forwards;
+    opacity: 0;
+}
+
+.team-description {
+    font-size: 1.2rem; /* Tamaño de texto ligeramente reducido */
+    line-height: 1.6;
+    color: #333333; /* Color de texto oscuro para contrastar con el fondo claro */
+    font-weight: 700;
+    background: #EAEAEA; /* Fondo gris claro y neutro */
+    padding: 25px 40px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-top: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* Estilos para el Botón Flotante de Boleta */
+.floating-ticket-button {
+    position: fixed;
+    bottom: 30px; /* Un poco más arriba para no chocar con el borde */
+    right: 30px; /* Un poco más a la izquierda */
+    background-color: #FF2948; /* Color vibrante, similar al CTA */
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 15px 40px 15px 40px; /* Forma de boleta */
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Sombra pronunciada */
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre icono y texto */
+    text-decoration: none; /* Eliminar subrayado de enlace */
+}
+
+.floating-ticket-button:hover {
+    background-color: #E0203F;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.floating-ticket-button span:first-child {
+    font-size: 1.5em; /* Tamaño del icono */
+    line-height: 1;
+}
+
+/* Responsividad para el botón flotante */
+@media (max-width: 768px) {
+    .floating-ticket-button {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-ticket-button {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 15px; /* Reducir padding */
+        font-size: 0.9rem;
+        gap: 5px;
+    }
+    .floating-ticket-button span:first-child {
+        font-size: 1.2em; /* Ajustar tamaño del icono para que quepa con el texto */
+    }
+}
+
+/* Sección de Reseñas Positivas */
+#testimonials-section {
+    background: linear-gradient(135deg, #f8f8f8 0%, #fffacd 50%, #e0e0e0 100%); /* Combinación de blanco, amarillo pálido y gris claro */
+    padding: 100px 20px; /* Increased vertical padding */
+    display: flex;
+    flex-direction: column; /* Apilar las tarjetas verticalmente */
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    /* Removed min-height: 100vh; to allow natural height */
+    overflow: visible; /* Permitir que el contenido se vea si excede */
+    margin-top: 80px; /* Add space above this section */
+}
+
+.testimonials-container {
+    max-width: 900px; /* Ancho máximo para las tarjetas */
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    display: flex; /* Usar flexbox para el contenedor de las tarjetas */
+    flex-direction: column; /* Apilar las tarjetas */
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+#testimonials-section h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    font-weight: 700;
+    color: #222;
+}
+
+.testimonial-slider { /* Este elemento ya no es un slider, pero mantendremos la clase para no romper el HTML */
+    display: block; /* Ocultar el display flex del slider */
+    overflow: visible; /* Asegurar que todo el contenido sea visible */
+    scroll-behavior: auto; /* Desactivar scroll suave */
+    -webkit-overflow-scrolling: auto; /* Desactivar para iOS */
+    padding-bottom: 0; /* Eliminar padding de scroll */
+}
+
+.testimonial-card {
+    background-color: #FFFFFF;
+    border-radius: 25px; /* Bordes más redondeados para una forma más suave */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada y profesional */
+    padding: 40px; /* Más padding para un look más espacioso */
+    width: 90%; /* Ocupar casi toda la pantalla */
+    max-width: 700px; /* Ancho máximo para las tarjetas */
+    margin: 0 auto; /* Centrar las tarjetas */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease; /* Añadir transición para efectos suaves */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Borde sutil */
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px); /* Efecto de "levantar" */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); /* Sombra más grande y oscura al hover */
+}
+
+
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 70px; /* Tamaño de imagen de perfil ligeramente más grande */
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #FFD700; /* Borde amarillo más pronunciado */
+}
+
+.author-info h3 {
+    margin: 0;
+    font-size: 1.3rem; /* Fuente ligeramente más grande */
+    color: #1877F2; /* Azul de Facebook */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición para el color neón */
+}
+
+.author-info .source {
+    margin: 0;
+    font-size: 1rem; /* Fuente ligeramente más grande */
+    color: #666;
+}
+
+.review-text {
+    font-size: 1.2rem; /* Fuente ligeramente más grande */
+    line-height: 1.7; /* Mayor interlineado para mejor legibilidad */
+    color: #444; /* Color de texto un poco más oscuro */
+    font-style: italic;
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición para el color neón */
+}
+
+/* Responsividad para la sección de testimonios */
+@media (max-width: 1024px) {
+    .testimonials-container {
+        gap: 20px; /* Ajustar espacio entre tarjetas */
+    }
+    .testimonial-card {
+        width: 95%; /* Ajustar ancho para pantallas más pequeñas */
+        padding: 30px;
+    }
+    .profile-pic {
+        width: 60px;
+        height: 60px;
+    }
+    .author-info h3 {
+        font-size: 1.2rem;
+    }
+    .review-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #testimonials-section {
+        padding: 60px 15px;
+    }
+    #testimonials-section h2 {
+        font-size: 2.2rem;
+    }
+    .testimonials-container {
+        gap: 20px; /* Ajustar espacio entre tarjetas */
+    }
+    .testimonial-card {
+        width: 100%; /* Ocupar todo el ancho disponible */
+        padding: 25px;
+    }
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+    .author-info h3 {
+        font-size: 1.1rem;
+    }
+    .review-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #testimonials-section h2 {
+        font-size: 1.8rem;
+    }
+    .testimonials-container {
+        gap: 20px;
+    }
+    .testimonial-card {
+        padding: 20px;
+    }
+    .profile-pic {
+        width: 45px;
+        height: 45px;
+    }
+    .author-info h3 {
+        font-size: 1rem;
+    }
+    .review-text {
+        font-size: 0.9rem;
+    }
+}
+.clover-background {
+    position: absolute;
+    top: 5%; /* Ajusta según sea necesario */
+    right: 5%; /* Ajusta según sea necesario */
+    font-size: 40vw; /* Tamaño grande y responsivo */
+    color: rgba(50, 205, 50, 0.1); /* Verde más vivo y translúcido */
+    z-index: 1; /* Detrás del contenido principal, delante de las columnas */
+    transform: rotate(20deg); /* Ligera rotación para un efecto dinámico */
+    pointer-events: none; /* Para que no interfiera con interacciones */
+    user-select: none; /* Evita que se pueda seleccionar el texto */
+    /* Para que el contenido del pseudo-elemento se muestre */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* Ajusta la altura de línea para centrar el carácter */
+}
+
+/* Responsive para FAQ */
+@media (max-width: 768px) {
+    #faq-section {
+        padding: 60px 15px;
+    }
+
+    #faq-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .faq-question p {
+        font-size: 1.1rem;
+    }
+
+    /* Ajustes para la sección del equipo */
+    #team-section {
+        height: 70vh;
+    }
+
+    .reveal-title {
+        font-size: 2rem;
+    }
+
+    .team-description {
+        font-size: 1rem;
+    }
+
+    .team-content {
+        padding: 30px 30px;
+        width: 90%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    #faq-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .faq-question p {
+        font-size: 1rem;
+    }
+
+    .faq-answer p {
+        font-size: 0.9rem;
+    }
+
+    /* Ajustes para la sección del equipo */
+    #team-section {
+        height: 60vh;
+    }
+
+    .reveal-title {
+        font-size: 1.5rem;
+    }
+
+    .team-description {
+        font-size: 0.9rem;
+        padding: 20px 25px;
+    }
+    .team-content {
+        padding: 20px 20px;
+        width: 95%;
+    }
+}
+
+/* Nueva Sección de Video */
+#video-section {
+    background-color: #000000; /* Fondo negro */
+    height: 100vh; /* Altura de pantalla completa */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+}
+
+#video-section h2 {
+    font-size: 4.5rem; /* Título más grande */
+    margin-bottom: 20px;
+    margin-top: 100px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFFFFF; /* Texto blanco */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Efecto de brillo sutil y menos intenso */
+}
+
+#video-section p {
+    font-size: 1.6rem; /* Descripción más grande */
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+    color: #FFFFFF; /* Texto blanco */
+}
+
+.video-wrapper {
+    position: relative;
+    width: 98%; /* Cubre casi toda la pantalla, más amplio */
+    max-width: 750px; /* Ancho máximo para mantener la proporción vertical, más grande */
+    aspect-ratio: 9 / 16; /* Proporción 9:16 (más alto que ancho, como un móvil) */
+    border-radius: 25px; /* Bordes redondeados para el marco */
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 10px rgba(255, 255, 255, 0.05); /* Sombra menos intensa y más translúcida */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde casi invisible y translúcido */
+    display: flex; /* Para centrar el video si es necesario */
+    justify-content: center;
+    align-items: center;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra el área sin distorsión */
+    border-radius: 22px; /* Ligeramente menos que el wrapper para el borde */
+}
+
+/* Responsividad para la sección de video */
+@media (max-width: 768px) {
+    #video-section h2 {
+        font-size: 3rem;
+    }
+    #video-section p {
+        font-size: 1.3rem;
+        max-width: 90%;
+    }
+    .video-wrapper {
+        width: 90%;
+        max-width: 550px; /* Más amplio */
+        border-radius: 20px;
+    }
+    .video-wrapper video {
+        border-radius: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    #video-section h2 {
+        font-size: 2.2rem;
+    }
+    #video-section p {
+        font-size: 1.1rem;
+        max-width: 95%;
+    }
+    .video-wrapper {
+        width: 95%;
+        max-width: 400px; /* Más amplio */
+        border-radius: 15px;
+    }
+    .video-wrapper video {
+        border-radius: 12px;
+    }
+}
+
+/* Nueva Sección de Contacto y Footer */
+#contact-footer-section {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: #f0f0f0;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 80px; /* Add space above this section */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-contact,
+.footer-social,
+.footer-links {
+    flex: 1;
+    min-width: 250px;
+    margin: 20px;
+}
+
+.footer-copyright {
+    width: 100%; /* Ocupa todo el ancho */
+    margin-top: 40px;
+}
+
+#contact-footer-section h3 {
+    color: #FFD700; /* Color dorado para los títulos */
+    margin-bottom: 20px;
+}
+
+.footer-contact p,
+.footer-links a {
+    color: #f0f0f0;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #FFD700;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espacio entre iconos */
+}
+
+.social-icon {
+    display: inline-flex; /* Usar inline-flex para centrar el texto verticalmente */
+    justify-content: center;
+    align-items: center;
+    width: 52px; /* 30% más grande */
+    height: 52px; /* 30% más grande */
+    line-height: 52px; /* Para centrar el texto */
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Añadir box-shadow a la transición */
+    font-size: 1.56rem; /* 30% más grande */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Sombra base para efecto neon */
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Sombra más fuerte al hover */
+}
+
+.social-icon.facebook {
+    background-color: #3b5998;
+    box-shadow: 0 0 8px rgba(59, 89, 152, 0.7); /* Neon azul Facebook */
+}
+
+.social-icon.facebook:hover {
+    box-shadow: 0 0 15px rgba(59, 89, 152, 1);
+}
+
+.social-icon.instagram {
+    background-color: #C13584; /* Color base de Instagram */
+    box-shadow: 0 0 8px rgba(193, 53, 132, 0.7); /* Neon rosa/púrpura Instagram */
+}
+
+.social-icon.instagram:hover {
+    box-shadow: 0 0 15px rgba(193, 53, 132, 1);
+}
+
+.social-icon.tiktok {
+    background-color: #000000; /* Fondo negro para TikTok */
+    box-shadow: 0 0 8px rgba(0, 255, 238, 0.7), 0 0 15px rgba(254, 44, 85, 0.7); /* Neon cian y magenta de TikTok */
+}
+
+.social-icon.tiktok:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 238, 1), 0 0 25px rgba(254, 44, 85, 1);
+}
+
+.footer-copyright p {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #FF2948; /* Color vibrante */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.download-button:hover {
+    background-color: #E0203F;
+    transform: translateY(-2px);
+}
+
+/* Responsividad para el Footer */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-contact,
+    .footer-social,
+    .footer-links,
+    .footer-copyright {
+        margin: 15px 0;
+        min-width: unset;
+        width: 100%;
+    }
+
+    .social-icons {
+        margin-top: 10px;
+    }
+
+    #contact-footer-section h3 {
+        margin-bottom: 15px;
+    }
+
+    .footer-contact p,
+    .footer-links a {
+        margin-bottom: 8px;
+    }
+
+    .footer-copyright p {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #contact-footer-section {
+        padding: 40px 15px;
+    }
+
+    #contact-footer-section h3 {
+        font-size: 1.3rem;
+    }
+
+    .footer-contact p,
+    .footer-links a {
+        font-size: 0.9rem;
+    }
+
+    .social-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .footer-copyright p {
+        font-size: 0.8rem;
+    }
+}
